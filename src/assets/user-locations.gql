@@ -1,0 +1,15 @@
+query UserLocations {
+    userLocations(date: "${d}"){
+        dateStart
+        dateEnd
+        locationId
+        location{
+            description
+            code
+            area{
+                id
+                description
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+<timbra-app>
+    <ion-content [has-footer]="isOffline">
+        <ion-menu [content]="content">
+            <ion-content>
+                 <ion-item color="dark" *ngIf="profile$ | async; let p">
+                    <ion-avatar item-left >
+                        <img *ngIf="p.image" src="{{p.image}}">
+                        <ion-icon class="img" *ngIf="!p.image" name="person"></ion-icon>  
+                    </ion-avatar>
+                    <h3>{{p.fullName}}</h3>
+                    <h4>{{p.role}}</h4>
+                    <p>{{p.birthdate}} ({{p.age}})</p>
+                </ion-item> 
+                <button ion-item detail-none (click)="openCheckin()">{{"app.menu.checkin" | translate}}</button>
+                <button ion-item detail-none (click)="openNewOperation()">{{'app.menu.new_operation' | translate }}</button>            
+                <button ion-item detail-none (click)="openCheckinList()">{{'app.menu.checkin_list' | translate }}</button>            
+                <button ion-item detail-none (click)="openAbsenceList()">{{'app.menu.absence_list' | translate }}</button>                            
+            </ion-content>
+            <ion-footer>
+                <ion-item color="primary" (click)="logout()" class="item--no-inner-border">
+                    <button ion-button color="light" clear item-left icon-only>
+                        <ion-icon name="log-out"></ion-icon>
+                    </button>
+                    <span text-color color="light">{{"app.menu.logout" | translate}}</span>                
+                </ion-item>
+            </ion-footer>
+        </ion-menu>
+        <ion-nav #content [root]="rootPage" swipe-back-enabled="false"></ion-nav>
+    </ion-content>
+</timbra-app>

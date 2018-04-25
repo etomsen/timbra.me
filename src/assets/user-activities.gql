@@ -1,0 +1,10 @@
+query UserActivities {
+    userActivities (date: "${d}"){
+        dateStart
+        dateEnd
+        activityId
+        activity{
+            description
+        }
+    }
+}

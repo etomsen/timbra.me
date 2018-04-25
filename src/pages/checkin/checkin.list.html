@@ -1,0 +1,54 @@
+<timbra-page>
+    <ion-header>
+        <ion-navbar>
+            <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+            <ion-buttons end>
+                <button ion-button (click)="onDateFilterClick()">
+                    <ion-icon name="calendar"></ion-icon>
+                </button>
+            </ion-buttons>
+            <ion-title ion-text color="dark">{{'checkinlist.title' | translate}} {{title}}</ion-title>
+        </ion-navbar>
+    </ion-header>
+    <ion-content color="dark">
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content color="light"
+                pullingIcon="arrow-dropdown"
+                pullingText="{{'checkinlist.pull-to-refresh' | translate}}"
+                refreshingSpinner="circles"
+                refreshingText="{{'checkinlist.loading' | translate}}">
+            </ion-refresher-content>
+        </ion-refresher>
+        <ion-list no-padding style="background-color: transparent;">
+            <ion-item *ngFor="let item of items$ | async" (click)="itemTapped($event, item)" style="background-color: transparent;">
+                <ion-avatar item-left>
+                    <div color="secondary" class="list-icon-avatar" *ngIf="item.isIn && !item.pending">
+                        <ion-icon  name="cloud-upload" ></ion-icon>
+                    </div>
+                    <div color="primary" class="list-icon-avatar" *ngIf="!item.isIn && !item.pending">
+                        <ion-icon name="cloud-download"></ion-icon>
+                    </div>
+                    <div color="light" class="list-icon-avatar" *ngIf="item.isIn && item.pending">
+                        <ion-icon  color="secondary" name="cloud-upload" ></ion-icon>
+                    </div>
+                    <div color="light" class="list-icon-avatar" *ngIf="!item.isIn && item.pending">
+                        <ion-icon color="primary" name="cloud-download"></ion-icon>
+                    </div>
+                </ion-avatar>
+                <p>{{item.id}}</p>
+                <p *ngIf="item.in"> <span ion-text color="secondary">{{item.dateText}}</span></p>
+                <p *ngIf="!item.in"> <span ion-text color="primary">{{item.dateText}}</span></p>
+                <h2 ion-text color="light" style="white-space: initial;">{{item.activity.description}}</h2>
+                <p ion-text color="light" style="white-space: initial;">{{item.location.area.description}}: {{item.location.description}}</p>
+            </ion-item>
+        </ion-list>
+        <div *ngIf="(items$ | async)?.length === 0" style="width: 100%; height: 100%; position: relative;" text-center>
+            <span ion-text color="light" style="opacity: 0.5; position: absolute; top: 50%; width: 100%; left: 0;">{{'checkinlist.empty-list' | translate }}</span>
+        </div>
+        <ion-fab right bottom>
+            <button ion-fab color="primary" (click)="onAddClick($event)"><ion-icon name="add"></ion-icon></button>
+        </ion-fab>
+    </ion-content>
+</timbra-page>

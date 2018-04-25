@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "allowSyntheticDefaultImports": true,
+        "declaration": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "skipLibCheck": true,
+        "lib": [
+            "dom",
+            "es2016"
+        ],
+        "module": "commonjs",
+        "sourceMap": true,
+        "target": "es6",
+        "plugins": [
+            {
+                "name": "ts-graphql-plugin",
+                "schema": "src/assets/graphql.json",
+                "tag": "gql" 
+            }
+        ]
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "compileOnSave": false,
+    "atom": {
+        "rewriteTsconfig": false
+    }
+}

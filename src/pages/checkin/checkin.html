@@ -1,0 +1,55 @@
+<timbra-page>
+    <ion-header>
+        <ion-navbar>
+            <button ion-button color="dark" menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+            <ion-title ion-text color="dark">{{'checkin.title' | translate}}</ion-title>
+        </ion-navbar>
+    </ion-header>
+    <ion-content class="no-scroll" color="dark">
+        <ion-row>
+            <ion-col offset-2 col-8>
+                <form [formGroup]="form" (submit)="submit($event)">
+                    <div padding-top>  
+                        <div padding-bottom ion-text color="primary">{{'checkin.select_activity' | translate}}</div>      
+                        <ion-item no-lines style="border: 1px solid #eee;">
+                            <ion-input type="text"  placeholder="{{'checkin.activity_placeholder' | translate}}" readonly formControlName="activity" (focus)="showActivityModal($event)"></ion-input>
+                        </ion-item>
+                    </div>
+                    <div padding-top style="position: relative;">
+                        <div padding-bottom ion-text color="primary">{{'checkin.select_place' | translate}}</div>
+                        <ion-item no-lines style="border: 1px solid #eee;">
+                            <ion-input type="text" readonly placeholder="{{'checkin.place_placeholder' | translate}}" (focus)="showLocationModal($event)" formControlName="location"></ion-input>
+                        </ion-item>
+                    </div>
+                    <div padding-top>
+                        <div padding-bottom ion-text color="primary">{{'checkin.in_out' | translate}}</div>
+                        <ion-row style="padding-top: 0;">
+                            <ion-col style="text-align: center; padding-top: 0;">
+                                <button ion-button block center large color="secondary" outline (click)="onInOutClick($event, true)" [ngClass]="{'inversed': form.value.inOut === true}">
+                                    <ion-icon name="cloud-upload"></ion-icon>
+                                </button>
+                            </ion-col>                    
+                            <ion-col style="text-align: center; padding-top: 0;">
+                                <button ion-button block large color="primary" outline (click)="onInOutClick($event, false)" [ngClass]="{'inversed': form.value.inOut === false}">
+                                    <ion-icon name="cloud-download"></ion-icon>
+                                </button>
+                            </ion-col>
+                        </ion-row>                    
+                    </div>        
+                </form> 
+            </ion-col>
+        </ion-row>   
+    </ion-content>
+    <ion-footer>
+        <ion-row>
+            <ion-col offset-2 col-4>
+                <button ion-button color="light" block outline (click)="cancel($event)">{{'checkin.cancel_btn'|translate}}</button>
+            </ion-col>                    
+            <ion-col col-4>
+                <button ion-button color="primary" block type="submit" (click)="send($event)" [disabled]="!form.valid">{{'checkin.ok_btn'|translate}}</button>
+            </ion-col>
+        </ion-row>
+    </ion-footer>
+</timbra-page>

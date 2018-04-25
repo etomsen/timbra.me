@@ -1,0 +1,33 @@
+<ion-content class="background-color timbra-page" dark>
+    <div padding-top="half-device-height">
+        <ion-grid>
+            <ion-row>
+                <ion-col offset-3 col-6 text-center>
+                    <img [@flyInBottomFast]="logoState" src="assets/img/login.png" style="height: 225px;">
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col offset-2 col-8>
+                    <form [formGroup]="loginForm" (submit)="login($event)" [@bounceInBottom]="formState">
+                        <ion-list no-lines>
+                            <ion-item no-lines style="border: 1px solid #eee;">
+                                <ion-input type="text" autocorrect="off" autocapitalize="none" formControlName="username" placeholder="{{'login.username' | translate}}"></ion-input>
+                            </ion-item>
+                            <div padding-top>
+                            </div>
+                            <ion-item no-lines style="border: 1px solid #eee;">
+                                <ion-input type="password" formControlName="password" placeholder="{{'login.password' | translate}}"></ion-input>
+                            </ion-item>
+                            <p ion-text color="primary" [ngStyle]="{'visibility': (!error ? 'hidden' : 'visible')}" padding-left style="overflow: hidden; text-overflow: ellipsis; height: 32px; line-height: 16px;">
+                                {{error | translate}}
+                            </p>
+                        </ion-list>
+                        <div [@fadeIn]="loginState">
+                            <button ion-button block type="submit" [disabled]="!loginForm.valid">{{'login.btn_login' | translate}}</button>
+                        </div>
+                    </form>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

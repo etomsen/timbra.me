@@ -1,0 +1,19 @@
+query UserCheckins {
+    userCheckins(date: "${d}") {
+        id
+        pendingId
+        datetime
+        inOut
+        location{
+            id
+            description
+            area{
+                description
+            }
+        }
+        activity{
+            id
+            description
+        }
+    }
+}

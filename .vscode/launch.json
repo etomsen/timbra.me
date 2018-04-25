@@ -1,0 +1,36 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Launch in Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:8100",
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}/www",
+            "runtimeExecutable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "runtimeArgs": [
+                "--disable-web-security",
+                "--user-data-dir",
+                "--remote-debugging-port=9222"
+            ]
+        },
+        {
+            "name": "Attach to Chrome, with sourcemaps",
+            "trace": true,
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}",
+            "url":"http://localhost:8100/",
+            "runtimeExecutable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "runtimeArgs": [
+                "--disable-web-security",
+                "--user-data-dir",
+                "--remote-debugging-port=9222"
+            ]
+        }
+    ]
+}

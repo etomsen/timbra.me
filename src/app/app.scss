@@ -1,0 +1,529 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+@import "../pages/login/login";
+@import "../pages/checkin/checkin";
+
+ion-list-header[primary] {
+	background-color: color($colors, primary);
+	color: white;
+	button {
+		color: white;
+	}
+}
+
+ion-list-header[secondary] {
+	background-color: color($colors, secondary);
+	color: white;
+	button {
+		color: white;
+	}
+}
+
+.item--no-inner-border {
+	.item-inner,.item-cover {
+		border-bottom: none !important;
+	}
+}
+
+.item--no-vertical-spacing {
+	min-height: 0;
+	ion-label {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	ion-badge {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	ion-avatar {
+		margin-top: 0;
+		margin-bottom: 0;
+		min-height: 0;
+	}
+}
+
+.no-scroll > .scroll-content {
+    overflow-y: hidden;
+}
+
+
+.no-spacing {
+	margin: 0;
+	padding: 0;
+}
+
+span[border]{
+	padding: 5px;
+	border: 1px solid color($colors, light);
+}
+
+.ios span[border]{
+	border-radius: 4px;
+}
+
+span[primary] {
+	border-color: color($colors, primary);
+}
+
+span[secondary] {
+	border-color: color($colors, secondary);
+}
+
+span[danger] {
+	border-color: color($colors, danger);
+}
+
+span[light] {
+	border-color: color($colors, light);
+}
+
+
+.md ion-list-header {
+    position: relative;
+}
+
+.wp ion-list-header {
+    position: relative;
+}
+
+ion-list-header .button[right] {
+	position: absolute; right: 8px; top: 0; background: white;
+}
+
+.md ion-list-header .button[right] {
+	top: 8px;
+}
+
+.wp ion-list-header .button[right] {
+	top: 50%;
+	margin-top: -(2.1em/2);
+}
+
+ul.leaders {
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: 40em;
+    padding: 0;
+    overflow-x: hidden;
+    list-style: none
+}
+
+ul.leaders li:before {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+    content:
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . ";
+    clear: both;
+}
+
+ ul.leaders li:after{
+     clear: both;
+ }
+
+ul.leaders span:first-child {
+    padding-right: 0.33em;
+    background: white;
+    float: left;
+}
+
+ul.leaders span + span {
+    float: right;
+    padding-left: 0.33em;
+    background: white;
+}
+
+.ion-col--vertical-separator {
+    width: 1px;
+    background: #aaa;
+    flex: none;
+    padding: 0;
+}
+
+.ion-col--vertical-separator--dot {
+    position: relative;
+}
+
+$ion-col--vertical-separator--dot-radius: 5px;
+.ion-col--vertical-separator--dot::before{
+    position: absolute;
+    top: $ion-col--vertical-separator--dot-radius*4;
+    left: -$ion-col--vertical-separator--dot-radius;
+    height: $ion-col--vertical-separator--dot-radius*2;
+    width: $ion-col--vertical-separator--dot-radius*2;
+    border-radius: $ion-col--vertical-separator--dot-radius;
+    background: inherit;
+    content: "";
+}
+
+.ion-col--vertical-separator--dot[primary]::before{
+    background: color($colors, primary);
+}
+.ion-col--vertical-separator--dot[primary][clear]::before{
+    border: 1px solid color($colors, primary);
+    background: white;
+}
+
+.text-color[primary] {
+	color: color($colors, primary) !important;
+}
+
+ion-card-header[primary] {
+	background-color: color($colors, primary);
+	color: white;
+	button {
+		color: white;
+	}
+}
+$item-icon-avatar--size: 56px;
+$list-progress-avatar--size: 40px;
+$list-progress-avatar--size-big: 60px;
+$list-progress-avatar--circle-color: #E5E5E5;
+$list-progress-avatar--inside-color: #fff;
+
+@mixin circle($size) {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50% - #{$size/2});
+    top: calc(50% - #{$size/2});
+    width: $size;
+    height: $size;
+}
+
+.list-progress-avatar {
+  width: $list-progress-avatar--size;
+  height: $list-progress-avatar--size;
+  border-radius: 50%;
+  margin: 0;
+  background-color: $list-progress-avatar--circle-color;
+  position: absolute;
+  left: 16px;
+}
+
+
+.list-progress-avatar--gt-50 {
+    background-color: color($colors, primary);
+}
+
+.list-progress-avatar__progress {
+    @include circle($list-progress-avatar--size);
+    clip: rect(0, $list-progress-avatar--size, $list-progress-avatar--size, $list-progress-avatar--size/2);
+    .list-progress-avatar--gt-50 & {
+        clip: rect(0, $list-progress-avatar--size/2, $list-progress-avatar--size, 0);
+        .list-progress-avatar__progress-fill {
+            clip: rect(0, $list-progress-avatar--size, $list-progress-avatar--size, $list-progress-avatar--size/2);
+            background: $list-progress-avatar--circle-color;
+        }
+    }
+}
+
+.list-progress-avatar__progress-fill {
+    @include circle($list-progress-avatar--size);
+    clip: rect(0, #{$list-progress-avatar--size/2}, $list-progress-avatar--size, 0);
+    background: color($colors, primary);
+    transform: rotate(60deg);
+}
+
+.list-progress-avatar__text {
+    @include circle(#{$list-progress-avatar--size/1.15});
+    background: $list-progress-avatar--inside-color;
+    text-align: center;
+    overflow: hidden;
+    line-height: #{$list-progress-avatar--size/1.15};
+    color: color($colors, primary);
+    font-size: 12px;
+}
+
+// list-icon-avatar
+.list-icon-avatar {
+  width: $list-progress-avatar--size;
+  height: $list-progress-avatar--size;
+  border-radius: 50%;
+  margin: 0;
+  background-color: color($colors, primary);
+  position: absolute;
+  left: 16px;
+}
+
+.list-icon-avatar ion-icon {
+    @include circle(#{$list-progress-avatar--size/1.15});
+    background: transparent;
+    overflow: hidden;
+}
+
+.list-icon-avatar ion-icon::before{
+    line-height: #{$list-progress-avatar--size/1.15};
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.list-icon-avatar[color="secondary"]{
+    background-color: color($colors, secondary);
+}
+
+.list-icon-avatar[color="light"]{
+    background-color: color($colors, light);
+}
+
+.list-icon-avatar ion-icon[color="secondary"]::before{
+    color: color($colors, secondary);
+}
+
+.list-icon-avatar ion-icon[color="primary"]::before{
+    color: color($colors, primary);
+}
+
+ion-avatar ion-icon.img {
+    display: block;
+    position: relative;
+}
+
+ion-avatar ion-icon.img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: $item-icon-avatar--size;
+    height: $item-icon-avatar--size;
+    border: 1px solid lightgrey;
+}
+
+ion-avatar ion-icon.img::before{
+    line-height: $item-icon-avatar--size;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+
+// list-text-avatar
+.list-text-avatar {
+    width: $list-progress-avatar--size;
+    height: $list-progress-avatar--size;
+    border-radius: 50%;
+    margin: 0;
+    background-color: color($colors, primary);
+    position: absolute;
+    left: 16px;
+}
+
+.list-text-avatar__text {
+    @include circle(#{$list-progress-avatar--size/1.15});
+    background: transparent;
+    overflow: hidden;
+    line-height: #{$list-progress-avatar--size/1.15};
+    text-align: center;
+    color: white;
+    font-size: 18px;
+}
+
+
+@mixin textColor($color) {
+    color: color($colors, $color) !important;
+}
+
+@mixin backgroundColor($color) {
+    background: color($colors, $color) !important;
+}
+
+@mixin borderColor($color) {
+    border: 1px solid #eee;
+    border-color: color($colors, $color) !important;
+}
+
+
+.text-color[color="primary"]{
+    @include textColor("primary");
+}
+
+.text-color[color="secondary"]{
+    @include textColor("secondary");
+}
+
+.text-color[color="light"]{
+    @include textColor("light");
+}
+
+.text-color[color="danger"]{
+    @include textColor("danger");
+}
+
+.text-color[color="dark"]{
+    @include textColor("dark");
+}
+
+.text-color[color="favorite"]{
+    @include textColor("favorite");
+}
+
+
+.background-color[color="primary"]{
+    @include backgroundColor("primary");
+}
+
+.background-color[color="secondary"]{
+    @include backgroundColor("secondary");
+}
+
+.background-color[color="light"]{
+    @include backgroundColor("light");
+}
+
+.background-color[color="danger"]{
+    @include backgroundColor("danger");
+}
+
+.background-color[color="dark"]{
+    @include backgroundColor("dark");
+}
+
+.background-color[color="favorite"]{
+    @include backgroundColor("favorite");
+}
+.border-color {
+    border: 1px solid #eee;
+}
+
+.border-color[color="primary"]{
+    @include borderColor("primary");
+}
+
+.segment-md .segment-button.activated, .segment-md .segment-button.segment-activated {
+    color: white;
+    background: color($colors, "primary");
+}
+
+/* tabs bug fix */
+/*.platform-android {
+  .tabs-content {
+    @extend .has-tabs-top;
+  }
+}
+
+.platform-ios {
+  .tabs-content {
+    @extend .has-tabs;
+  }
+}*/
+
+.fab-md.fab-in-list[color="primary"] {
+    color: white !important;
+    background: color($colors, "primary") !important;
+}
+
+.fab-ios.fab-in-list[color="primary"] {
+    color: white !important;
+    background: color($colors, "primary") !important;
+}
+
+.fab-caption {
+    color: white !important;
+    position: absolute;
+    right: 44px;
+    top: 10px;
+    background: color($colors, "primary") !important;
+    width: 100px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+}
+
+.item-block.ng-invalid .item-inner {
+    border-bottom: 0.55px solid color($colors, "danger");
+}
+
+.inversed[color="primary"] {
+    background-color: color($colors, "primary");
+    color: white;
+}
+
+.inversed[color="secondary"] {
+    background-color: color($colors, "secondary");
+    color: white;
+}
+
+ion-refresher-content[color="light"] .refresher-pulling-text,.refresher-pulling-icon, .refresher-refreshing-text,.refresher-refreshing-icon{
+    color: color($colors, "light");
+    opacity: 0.5;
+}
+
+
+timbra-app {
+    >ion-content:first-of-type {
+        @extend .no-scroll;
+    }
+
+    ion-menu {
+        ion-item:first-of-type {
+            @extend .item--no-inner-border;
+            ion-avatar {
+                min-width: 56px;
+                min-height: 56px;
+                img {
+                    width: 56px;
+                    height: 56px;
+                }
+            }
+        }
+    }
+
+}
+timbra-page {
+    >ion-content {
+        background-image: url('/assets/img/pattern.png'); 
+        background-repeat: repeat-y; 
+        background-size: cover;
+        background-color: color($colors, "dark");
+
+        &.has-refresher {
+            .scroll-content {
+                background: transparent;
+                border-top: none;
+            }
+        }
+    }
+    >ion-header{
+        ion-navbar {
+            ion-title {
+                .toolbar-title{
+                    font-size: small;
+                }
+            }   
+        }
+    }
+}
+
+ion-content.has-refresher-bug{
+    >.scroll-content{
+        background: white;
+    }
+}

@@ -1,0 +1,8 @@
+mutation Login {
+  Login (input: {username: "${data.username}", password: "${data.password}"}) {
+    uuid
+    username
+    role
+    jwtAuthToken
+  }
+}

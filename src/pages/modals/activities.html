@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar color="dark" hideBackButton class="show-navbar">
+        <ion-title>{{"activities.title" | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content class="has-header has-refresher-bug">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="{{'activities.pull-to-refresh' | translate}}"
+            refreshingSpinner="circles"
+            refreshingText="{{'activities.loading' | translate}}">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-list>
+        <button ion-item detail-none *ngFor="let item of items$ | async" (click)="itemSelected(item)">
+            {{item.activity.description}}
+        </button>
+    </ion-list>
+    <div *ngIf="(items$ | async)?.length === 0" style="width: 100%; height: 100%; position: relative;" text-center>
+        <span text-color primary style="position: absolute; top: 50%; width: 100%; left: 0;">{{'activities.empty-list' | translate}}</span>
+    </div>
+</ion-content>
+  <ion-footer>
+    <div padding text-center>
+        <button ion-button primary outline (click)="close()">{{'activities.cancel_btn' | translate}}</button>
+    </div>
+  </ion-footer>
